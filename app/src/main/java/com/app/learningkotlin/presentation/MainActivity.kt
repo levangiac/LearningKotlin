@@ -10,6 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.app.learningkotlin.presentation.coin_detail.CoinDetailScreen
 import com.app.learningkotlin.presentation.coin_list.CoinListScreen
+import com.app.learningkotlin.presentation.splash.SplashScreen
 import com.app.learningkotlin.presentation.ui.theme.CryptocurrencyAppYTTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,7 +22,12 @@ class MainActivity : ComponentActivity() {
             CryptocurrencyAppYTTheme {
                 Surface(color = MaterialTheme.colors.background) {
                         val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = Screen.CoinListScreen.router ){
+                    NavHost(navController = navController, startDestination = Screen.SplashScreen.router ){
+                        composable(
+                            route = Screen.SplashScreen.router
+                        ){
+                            SplashScreen(navController)
+                        }
                         composable(
                             route = Screen.CoinListScreen.router
                         ) {

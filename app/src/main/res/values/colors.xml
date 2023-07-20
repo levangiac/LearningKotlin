@@ -11,4 +11,5 @@
     <color name="text_white">#eeeeee</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="ic_launcher_background">#f7b9b5</color>
 </resources>
