@@ -1,6 +1,7 @@
 package com.app.learningkotlin.presentation.coin_list
 
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,7 +32,10 @@ fun CoinListScreen(
         LazyColumn(modifier = Modifier.fillMaxSize()){
             items(state.coins){ coin->
                 CoinListItem(coin = coin, onClickItem ={
-                    navController.navigate(Screen.CoinDetailScreen.router + "/${coin.id}")
+                    Log.d("Test","dasa")
+                    navController.navigate(Screen.CoinDetailScreen.router + "/${coin.id}"){
+
+                    }
                 } )
             }
         }
