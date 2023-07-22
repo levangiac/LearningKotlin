@@ -1,7 +1,6 @@
-package com.app.learningkotlin.presentation.splash
+package com.app.learningkotlin.presentation.screens
 
 
-import android.util.Log
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -19,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.app.learningkotlin.R
 import com.app.learningkotlin.presentation.Screen
+import com.app.learningkotlin.presentation.navigation.Graph
 import com.app.learningkotlin.presentation.ui.theme.ColorBackgroundLauncher
 import com.app.learningkotlin.presentation.ui.theme.DarkGray
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -31,16 +31,16 @@ fun SplashScreen(navController: NavController) {
  val alphaAnim = animateFloatAsState(
   targetValue = if (startAnimation) 1f else 0f,
   animationSpec = tween(
-   durationMillis = 3000
+   durationMillis = 2500
   )
  )
  val systemUiController = rememberSystemUiController()
  val useDarkIcons = isSystemInDarkTheme()
  LaunchedEffect(key1 = true) {
   startAnimation = true
-  delay(4000)
+  delay(3000)
   navController.popBackStack()
-  navController.navigate(Screen.CoinListScreen.router)
+  navController.navigate(Graph.APPBOTTOMTAB)
   systemUiController.setSystemBarsColor(color = DarkGray,
    darkIcons = useDarkIcons)
   systemUiController.setNavigationBarColor(color = DarkGray,

@@ -5,12 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.app.learningkotlin.presentation.coin_detail.CoinDetailScreen
-import com.app.learningkotlin.presentation.coin_list.CoinListScreen
-import com.app.learningkotlin.presentation.splash.SplashScreen
+import com.app.learningkotlin.presentation.navigation.RootNavigationGraph
 import com.app.learningkotlin.presentation.ui.theme.CryptocurrencyAppYTTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,24 +17,25 @@ class MainActivity : ComponentActivity() {
         setContent {
             CryptocurrencyAppYTTheme {
                 Surface(color = MaterialTheme.colors.background) {
-                        val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = Screen.SplashScreen.router ){
-                        composable(
-                            route = Screen.SplashScreen.router
-                        ){
-                            SplashScreen(navController)
-                        }
-                        composable(
-                            route = Screen.CoinListScreen.router
-                        ) {
-                            CoinListScreen(navController)
-                        }
-                        composable(
-                            route = Screen.CoinDetailScreen.router + "/{coinId}"
-                        ) {
-                            CoinDetailScreen()
-                        }
-                    }
+                    RootNavigationGraph(navController = rememberNavController())
+//                    val navController = rememberNavController()
+//                    NavHost(navController = navController, startDestination = Screen.SplashScreen.router ){
+//                        composable(
+//                            route = Screen.SplashScreen.router
+//                        ){
+//                            SplashScreen(navController)
+//                        }
+//                        composable(
+//                            route = Screen.CoinListScreen.router
+//                        ) {
+//                            CoinListScreen(navController)
+//                        }
+//                        composable(
+//                            route = Screen.CoinDetailScreen.router + "/{coinId}"
+//                        ) {
+//                            CoinDetailScreen()
+//                        }
+//                    }
                 }
             }
         }
