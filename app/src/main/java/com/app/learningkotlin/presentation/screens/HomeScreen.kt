@@ -30,6 +30,7 @@ fun HomeScreen(navController: NavHostController = rememberNavController()) {
         bottomBar = { BottomBar(navController) }
     ) {
         HomeNavGraph(navController = navController)
+
     }
 }
 
@@ -69,7 +70,7 @@ fun BottomBar(navController: NavHostController) {
             BottomNavigationItem(
                 icon = { Icon(painterResource(id = item.icon), contentDescription = item.route, modifier = Modifier.padding(top = 30.dp)) },
                 label = { Text(text = item.route, color = if(selected) Color.White else Color.White.copy(0.4f) ) },
-                selectedContentColor = Color.White,
+//                selectedContentColor = Color.White,
 //                unselectedContentColor = Color.White.copy(0.4f),
                 alwaysShowLabel = true,
                 selected = selected,

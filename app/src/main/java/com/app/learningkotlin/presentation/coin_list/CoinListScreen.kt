@@ -25,15 +25,14 @@ import com.app.learningkotlin.presentation.coin_list.components.CoinListItem
 @Composable
 fun CoinListScreen(
     navController:NavController,
-    viewModel: CoinListViewModel= hiltViewModel()
+    viewModel: CoinListViewModel= hiltViewModel(),
 ){
     val state = viewModel.state.value
     Box(modifier = Modifier.fillMaxSize()){
         LazyColumn(modifier = Modifier.fillMaxSize()){
             items(state.coins){ coin->
                 CoinListItem(coin = coin, onClickItem ={
-                    navController.navigate(Screen.CoinDetailScreen.router + "/${coin.id}"){
-                    }
+                    navController.navigate(Screen.CoinDetailScreen.router + "/${coin.id}")
                 } )
             }
         }

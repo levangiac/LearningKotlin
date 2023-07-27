@@ -18,7 +18,7 @@ fun RootNavigationGraph(navController: NavHostController){
             SplashScreen(navController)
         }
         composable(route = Graph.APPBOTTOMTAB) {
-                HomeScreen()
+            HomeScreen()
         }
 
     }
@@ -27,5 +27,4 @@ object Graph {
     const val ROOT = "root_graph"
     const val AUTHENTICATION = "auth_graph"
     const val APPBOTTOMTAB = "app_bottom_tab"
-
 }

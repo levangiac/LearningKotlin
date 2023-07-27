@@ -1,39 +1,71 @@
 package com.app.learningkotlin.presentation.coin_detail
 
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
+import androidx.compose.ui.Alignment.Companion.CenterStart
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
+import com.app.learningkotlin.R
+import com.app.learningkotlin.presentation.Screen
 import com.app.learningkotlin.presentation.coin_detail.components.CoinTag
+import com.app.learningkotlin.presentation.coin_detail.components.Header
 import com.app.learningkotlin.presentation.coin_detail.components.TeamListItem
 import com.google.accompanist.flowlayout.FlowRow
+import java.util.logging.Logger
 
 
 @Composable
 fun CoinDetailScreen(
-    viewModel: CoinDetailViewModel = hiltViewModel()
+    navController: NavController,
+    viewModel: CoinDetailViewModel = hiltViewModel(),
 ) {
     val state = viewModel.state.value
+    val contextForToast = LocalContext.current.applicationContext
+
     Box(modifier = Modifier.fillMaxSize()) {
+
+
+
         state.coin?.let { coin ->
+
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(20.dp)
             ) {
                 item {
+                    IconButton( modifier = Modifier
+                        .size(30.dp),onClick = {
+                        Toast.makeText(contextForToast, "Click!", Toast.LENGTH_SHORT).show()
+                        Log.d("TAG","AAAAA")
+                        navController.popBackStack()}) {
+                        Icon(
+                            painterResource(R.drawable.ic_back) ,contentDescription = "ic_black",
+                            modifier= Modifier
+                                .size(30.dp, 30.dp)
+                                .padding(top = 5.dp, start = 5.dp)
+                        )
+                    }
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween
@@ -70,7 +102,7 @@ fun CoinDetailScreen(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         coin?.tags.forEach { tag ->
-                            CoinTag(tag = tag)
+                            CoinTag( tag = tag)
                         }
                     }
                     Spacer(modifier = Modifier.height(15.dp))
@@ -85,7 +117,7 @@ fun CoinDetailScreen(
                         teamMember = teamMember,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(10.dp)
+                            .padding(10.dp),
                     )
                     Divider()
                 }
@@ -107,3 +139,5 @@ fun CoinDetailScreen(
         }
     }
 }
+
+

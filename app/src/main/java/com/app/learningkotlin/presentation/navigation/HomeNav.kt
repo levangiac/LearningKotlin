@@ -1,10 +1,12 @@
 package com.app.learningkotlin.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
 import com.app.learningkotlin.presentation.BottomBarScreen
 import com.app.learningkotlin.presentation.Screen
 import com.app.learningkotlin.presentation.coin_detail.CoinDetailScreen
@@ -40,33 +42,18 @@ fun HomeNavGraph(navController: NavHostController) {
                 onClick = { }
             )
         }
-        composable(route = Screen.CoinDetailScreen.router + "/{coinId}") { CoinDetailScreen() }
-//        detailsNavGraph(navController = navController)
+        detailsNavGraph(navController = navController)
     }
 }
 
-//fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
-//    navigation(
-//        route = Graph.DETAILS,
-//        startDestination = DetailsScreen.Information.route
-//    ) {
-//        composable(route = DetailsScreen.Information.route) {
-//            ScreenContent(name = DetailsScreen.Information.route) {
-//                navController.navigate(DetailsScreen.Overview.route)
-//            }
-//        }
-//        composable(route = DetailsScreen.Overview.route) {
-//            ScreenContent(name = DetailsScreen.Overview.route) {
-//                navController.popBackStack(
-//                    route = DetailsScreen.Information.route,
-//                    inclusive = false
-//                )
-//            }
-//        }
-//    }
-//}
 
-//sealed class DetailsScreen(val route: String) {
-//    object Information : DetailsScreen(route = "INFORMATION")
-//    object Overview : DetailsScreen(route = "OVERVIEW")
-//}
+fun NavGraphBuilder.detailsNavGraph(navController: NavHostController) {
+    navigation(
+        route =Graph.ROOT,
+        startDestination = Screen.CoinDetailScreen.router
+    ) {
+        composable(route = Screen.CoinDetailScreen.router + "/{coinId}") {
+            CoinDetailScreen(navController) }
+    }
+}
+
